@@ -270,4 +270,4 @@ async function sendSummaryAndOptions(interaction) {
   await interaction.update({ content: summary, components: [row] });
 }
 
-client.login(process.env.TOKEN);
+client.login(process.env.BOT_TOKEN);
