@@ -16,7 +16,7 @@ const {
   // Removed InteractionResponseFlags import to avoid confusion if not directly exported
 } = require("discord.js");
 
-console.log("TOKEN:", ${{BOT_TOKEN)}};
+console.log("TOKEN:", process.env.WEBHOOK_URL);
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
