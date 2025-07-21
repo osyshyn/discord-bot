@@ -16,7 +16,7 @@ const {
   // Removed InteractionResponseFlags import to avoid confusion if not directly exported
 } = require("discord.js");
 
-console.log("TOKEN:", process.env.BOT_TOKEN);
+console.log("TOKEN:", process.env.THOMAS);
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
@@ -272,4 +272,4 @@ async function sendSummaryAndOptions(interaction) {
   await interaction.update({ content: summary, components: [row] });
 }
 
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.THOMAS);
