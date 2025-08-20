@@ -13,7 +13,6 @@ const {
   StringSelectMenuBuilder,
   ButtonBuilder,
   ButtonStyle,
-  // Removed InteractionResponseFlags import to avoid confusion if not directly exported
 } = require("discord.js");
 
 const client = new Client({
@@ -76,7 +75,7 @@ client.on("interactionCreate", async (interaction) => {
         console.log('User ID:', interaction.user.id);
         
         // Update the message to show processing
-        await interaction.update({ content: "🔄 Processing your request...\n\nSending data to n8n and generating your book...", components: [] }); 
+        await interaction.update({ content: "🔄 Processing your request...\n\nGenerating your book...", components: [] }); 
         
         try {
         const webhookUrl = process.env.WEBHOOK_URL;
@@ -87,7 +86,7 @@ client.on("interactionCreate", async (interaction) => {
         }
 
         // Build the JSON payload as specified
-        const sessionId = `${interaction.user.id}:${interaction.channelId}`;
+        const sessionId = interaction.channelId;
         const payload = {
           bookTitle: userData.bookTitle,
           bookLength: userData.bookLength,
