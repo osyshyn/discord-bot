@@ -19,6 +19,39 @@ const client = new Client({
   intents: [GatewayIntentBits.Guilds],
 });
 
+// Add command definitions
+const commands = [
+  {
+    name: 'ping',
+    description: 'Replies with pong!'
+  },
+  {
+    name: 'begin',
+    description: 'Start the book generation survey'
+  }
+];
+
+// Register commands when bot starts
+client.once('ready', async () => {
+  console.log(`Logged in as ${client.user.tag}`);
+  
+  try {
+    const rest = new REST({ version: '10' }).setToken(process.env.BOT_TOKEN);
+    
+    console.log('Started refreshing application (/) commands.');
+    
+    // Register commands globally
+    await rest.put(
+      Routes.applicationCommands(client.user.id),
+      { body: commands }
+    );
+    
+    console.log('Successfully reloaded application (/) commands.');
+  } catch (error) {
+    console.error('Error registering commands:', error);
+  }
+});
+
 // Map to store temporary survey data for each user
 const userSurveyData = new Map();
 
